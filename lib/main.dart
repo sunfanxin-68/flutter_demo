@@ -1,125 +1,103 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_0610/demo/drawer_demo.dart';
+import 'package:flutter_0610/demo/BottomNavigationBarDemo.dart'; // 导入flutter的material组件库
+import 'package:flutter_0610/demo/listview_demo.dart';
+import 'package:flutter_0610/demo/basic_demo.dart';
+import 'package:flutter_0610/demo/layout_demo.dart';
+import 'package:flutter_0610/demo/View_demo.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(App()); // 主函数，程序入口
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
+class App extends StatelessWidget {
+  // App组件，无状态组件
   @override
   Widget build(BuildContext context) {
+    // 实现构建方法
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+        // 返回一个MaterialApp组件，为应用程序顶级组件
+        home: const Home(), // 主页面
+        theme: ThemeData(
+          // 设置主题
+          primarySwatch: Colors.orange, // 主题颜色
+          highlightColor: const Color.fromARGB(125, 10, 249, 189), // 高亮颜色
+          splashColor: const Color.fromARGB(179, 10, 102, 200), // 波纹颜色
+          hintColor: const Color.fromRGBO(3, 54, 255, 1.0), // 提示颜色
+        ));
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class Home extends StatelessWidget {
+  // Home组件，无状态组件
+  const Home({Key? key}) : super(key: key); // 构造函数
+  
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+    // 实现构建方法
+    return DefaultTabController(
+      // 标签控制器
+      length: 4, // 标签数量
+      child: Scaffold(
+        // 脚手架组件，用于页面布局
+        backgroundColor: const Color.fromARGB(255, 245, 245, 245), // 页面背景颜色
+        appBar: AppBar(
+          // 顶部应用栏  menu按钮自己打开抽屉了
+          // leading: IconButton( // 左侧菜单按钮
+          //   icon: const Icon(Icons.menu), // 菜单图标
+          //   tooltip: 'Navigration', // 提示文字
+          //   onPressed: () => debugPrint('okkk'), // 点击事件，打印日志
+          // ),
+          title: const Text('dreaMTank'), // 标题
+          actions: <Widget>[
+            // 右侧操作按钮列表
+            IconButton(
+              icon: const Icon(Icons.search), // 搜索按钮
+              tooltip: 'Search', // 提示文字
+              onPressed: () =>
+                  debugPrint('Search button is pressed.'), // 点击事件，打印日志
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+            IconButton(
+              icon: const Icon(Icons.more_horiz), // 更多按钮
+              tooltip: 'more_horiz', // 提示文字
+              onPressed: () =>
+                  debugPrint('more button is pressed.'), // 点击事件，打印日志
+            )
+          ],
+          elevation: 0.0, // 应用栏阴影
+          bottom: const TabBar(
+              // 应用栏底部的标签栏
+              unselectedLabelColor: Colors.black38, // 未选中标签颜色
+              indicatorColor: Colors.black54, // 指示器颜色
+              indicatorSize: TabBarIndicatorSize.label, // 指示器大小
+              indicatorWeight: 1.0, // 指示器粗细
+              tabs: <Widget>[
+                // 标签列表
+                Tab(icon: Icon(Icons.local_florist)), // 第一个标签
+                Tab(icon: Icon(Icons.local_activity)), // 第二个标签
+                Tab(icon: Icon(Icons.local_see_sharp)), // 第三个标签
+                Tab(icon: Icon(Icons.view_quilt)), // 第４个标签
+              ]),
+        ),
+        body: const  TabBarView(
+          // 主体部分，标签视图
+          children:  <Widget>[
+            
+            ListViewDemo(),
+            BasicDemo(),
+            LayoutDemo(), // 第三个视图
+            ViewDemo(),
+            // BasicDemo(),
+            // LayoutDemo(),
+            // SliverDemo(),
           ],
         ),
+        drawer: const DrawerDemo(),
+        bottomNavigationBar: const BottomNavigationBarDemo(),
+         
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
