@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_0610/demo/drawer_demo.dart';
-import 'package:flutter_0610/demo/BottomNavigationBarDemo.dart'; // 导入flutter的material组件库
+import 'package:flutter_0610/demo/BottomNavigationBarDemo.dart'; 
 import 'package:flutter_0610/demo/listview_demo.dart';
-import 'package:flutter_0610/demo/basic_demo.dart';
+//import 'package:flutter_0610/demo/basic_demo.dart';
 import 'package:flutter_0610/demo/layout_demo.dart';
 import 'package:flutter_0610/demo/View_demo.dart';
+import 'package:flutter_0610/demo/sliver_demo.dart';
+import 'package:flutter_0610/demo/navigator_demo.dart' as demo; 
+import 'package:flutter_0610/demo/form_demo.dart';
+
 
 
 void main() {
@@ -18,21 +22,32 @@ class App extends StatelessWidget {
     // 实现构建方法
     return MaterialApp(
         // 返回一个MaterialApp组件，为应用程序顶级组件
-        home: const Home(), // 主页面
+        // home: const NavigatorDemo(),
+        initialRoute: '/form',
+        routes: {
+          '/': (context) =>  const Home(),
+          '/about': (context) => demo.Page(title: 'About'),  // 使用了正确的构造函数语法
+           '/form': (context) => FormDemo(),
+          },
         theme: ThemeData(
           // 设置主题
           primarySwatch: Colors.orange, // 主题颜色
           highlightColor: const Color.fromARGB(125, 10, 249, 189), // 高亮颜色
           splashColor: const Color.fromARGB(179, 10, 102, 200), // 波纹颜色
           hintColor: const Color.fromRGBO(3, 54, 255, 1.0), // 提示颜色
-        ));
+           colorScheme: ColorScheme.fromSwatch(
+           primarySwatch: Colors.orange,
+             ).copyWith(
+                secondary: Colors.blue,
+                )
+        )
+     );
   }
 }
 
 class Home extends StatelessWidget {
   // Home组件，无状态组件
   const Home({Key? key}) : super(key: key); // 构造函数
-  
 
   @override
   Widget build(BuildContext context) {
@@ -81,22 +96,18 @@ class Home extends StatelessWidget {
                 Tab(icon: Icon(Icons.view_quilt)), // 第４个标签
               ]),
         ),
-        body: const  TabBarView(
+        body: const TabBarView(
           // 主体部分，标签视图
-          children:  <Widget>[
-            
+          children: <Widget>[
             ListViewDemo(),
-            BasicDemo(),
-            LayoutDemo(), // 第三个视图
             ViewDemo(),
             // BasicDemo(),
-            // LayoutDemo(),
-            // SliverDemo(),
+            LayoutDemo(),
+            SliverDemo(),
           ],
         ),
         drawer: const DrawerDemo(),
         bottomNavigationBar: const BottomNavigationBarDemo(),
-         
       ),
     );
   }
