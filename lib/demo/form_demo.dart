@@ -8,6 +8,10 @@ class FormDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     // Scaffoldはウィジェットツリーの一部として表示される
     return Scaffold(
+     appBar: AppBar(
+        title: const Text('FormDemo'),
+        elevation: 0.0,
+      ),
       body: Theme(
         data: ThemeData(
           primaryColor: Colors.green, // 主題の色を緑に設定

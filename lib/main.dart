@@ -5,10 +5,13 @@ import 'package:flutter_0610/demo/listview_demo.dart';
 //import 'package:flutter_0610/demo/basic_demo.dart';
 import 'package:flutter_0610/demo/layout_demo.dart';
 import 'package:flutter_0610/demo/View_demo.dart';
+import 'package:flutter_0610/demo/rxdart/rxdart_demo.dart';
 import 'package:flutter_0610/demo/sliver_demo.dart';
 import 'package:flutter_0610/demo/navigator_demo.dart' as demo; 
 import 'package:flutter_0610/demo/form_demo.dart';
 import 'package:flutter_0610/demo/material_components.dart';
+import 'package:flutter_0610/stream/stream_demo.dart';
+
 
 
 
@@ -24,12 +27,15 @@ class App extends StatelessWidget {
     return MaterialApp(
         // 返回一个MaterialApp组件，为应用程序顶级组件
         // home: const NavigatorDemo(),
-        initialRoute: '/mdc',
+        initialRoute: '/rxdart',
         routes: {
           '/': (context) =>  const Home(),
           '/about': (context) => demo.Page(title: 'About'),  // 使用了正确的构造函数语法
            '/form': (context) => const FormDemo(),
            '/mdc': (context) => const MaterialComponents(),
+           '/stream': (context) => const StreamDemo(),
+           '/rxdart': (context) => const RxDartDemo(),
+           
           },
         theme: ThemeData(
           // 设置主题
@@ -92,14 +98,14 @@ class Home extends StatelessWidget {
               indicatorWeight: 1.0, // 指示器粗细
               tabs: <Widget>[
                 // 标签列表
-                Tab(icon: Icon(Icons.local_florist)), // 第一个标签
-                Tab(icon: Icon(Icons.local_activity)), // 第二个标签
-                Tab(icon: Icon(Icons.local_see_sharp)), // 第三个标签
-                Tab(icon: Icon(Icons.view_quilt)), // 第４个标签
+                Tab(icon: Icon(Icons.local_florist)), 
+                Tab(icon: Icon(Icons.local_activity)), 
+                Tab(icon: Icon(Icons.local_see_sharp)),
+                Tab(icon: Icon(Icons.view_quilt)),
               ]),
         ),
         body: const TabBarView(
-          // 主体部分，标签视图
+          
           children: <Widget>[
             ListViewDemo(),
             ViewDemo(),
