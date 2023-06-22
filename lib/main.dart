@@ -11,6 +11,14 @@ import 'package:flutter_0610/demo/navigator_demo.dart' as demo;
 import 'package:flutter_0610/demo/form_demo.dart';
 import 'package:flutter_0610/demo/material_components.dart';
 import 'package:flutter_0610/stream/stream_demo.dart';
+import 'demo/animation/animation_demo.dart';
+import 'demo/bloc/bloc_demo.dart';
+import 'demo/http/http_demo.dart';
+import 'demo/i18n/i18n_demo.dart';
+import 'demo/state/state_management_demo.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+
 
 
 
@@ -25,9 +33,22 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     // 实现构建方法
     return MaterialApp(
+
+      localizationsDelegates: const [
+         
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en', 'US',),
+          Locale('zh', 'CN'),
+          Locale('ja', 'JP'),
+          
+        ],
+        debugShowCheckedModeBanner: false,
         // 返回一个MaterialApp组件，为应用程序顶级组件
         // home: const NavigatorDemo(),
-        initialRoute: '/rxdart',
+        initialRoute: '/i18n',
         routes: {
           '/': (context) =>  const Home(),
           '/about': (context) => demo.Page(title: 'About'),  // 使用了正确的构造函数语法
@@ -35,6 +56,11 @@ class App extends StatelessWidget {
            '/mdc': (context) => const MaterialComponents(),
            '/stream': (context) => const StreamDemo(),
            '/rxdart': (context) => const RxDartDemo(),
+           '/state-management': (context) => StateManagementDemo(),
+           '/bloc': (context) => BlocDemo(),
+            '/http': (context) => HttpDemo(),
+            '/animation': (context) => AnimationDemo(),
+            '/i18n': (context) => I18nDemo(),
            
           },
         theme: ThemeData(
